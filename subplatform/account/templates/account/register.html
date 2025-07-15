@@ -1,1 +1,8 @@
-<h1>Register Page</h1>
+<html>
+    <h1>Register Page</h1>
+    <form action="" method="POST" autocomplete="off">
+        {% csrf_token %}
+        {{ RegisterForm.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+</html>

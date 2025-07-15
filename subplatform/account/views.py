@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
+from .forms import CreateUserForm
 
 def home(request):
 
@@ -12,8 +14,19 @@ def home(request):
 
 def register(request):
 
-    context = {
+    form = CreateUserForm()
 
+    if request.method == "POST":
+
+        form = CreateUserForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+            return HttpResponse("User registered!")
+
+    context = {
+        'RegisterForm': form
     }
 
     return render(request, "account/register.html", context)
