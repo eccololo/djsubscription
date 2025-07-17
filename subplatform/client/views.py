@@ -4,4 +4,8 @@ from django.shortcuts import render
 
 def client_dashboard(request):
 
-    pass
+    context = {
+
+    }
+
+    return render(request, "client/client-dashboard.html")

@@ -55,13 +55,13 @@ def my_login(request):
 
                 login(request, user)
 
-                return HttpResponse("Welcome Writer!")
+                return redirect("writer-dashboard")
             
             if user is not None and user.is_writer == False:
 
                 login(request, user)
 
-                return HttpResponse("Welcome Client!")
+                return redirect("client-dashboard")
 
             
 
