@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
 
 from .forms import CreateUserForm
 
@@ -23,7 +25,7 @@ def register(request):
         if form.is_valid():
 
             form.save()
-            return HttpResponse("User registered!")
+            return redirect("my-login")
 
     context = {
         'RegisterForm': form
@@ -34,8 +36,37 @@ def register(request):
 
 def my_login(request):
 
-    context = {
+    form = AuthenticationForm()
 
+    if request.method == "POST":
+
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            
+            # Need username for sake of AuthenticationForm that looks for username.
+            # In form user need to enter email though.
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None and user.is_writer == True:
+
+                login(request, user)
+
+                return HttpResponse("Welcome Writer!")
+            
+            if user is not None and user.is_writer == False:
+
+                login(request, user)
+
+                return HttpResponse("Welcome Client!")
+
+            
+
+    context = {
+        "LoginForm": form
     }
 
     return render(request, "account/my-login.html", context)
