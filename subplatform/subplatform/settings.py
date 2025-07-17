@@ -32,6 +32,8 @@ INSTALLED_APPS = [
 
     # Dev Apps
     'account',
+    'client',
+    'writer',
 ]
 
 MIDDLEWARE = [
