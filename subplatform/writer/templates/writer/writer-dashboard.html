@@ -1,2 +1,6 @@
-<h1>Writer Dashboard</h1>
-<a href="{% url 'user-logout' %}">Logout</a>
+{% extends 'writer/navbar.html' %}
+
+{% block content %}
+    <h1>Writer Dashboard</h1>
+    <a href="{% url 'user-logout' %}">Logout</a>
+{% endblock %}
