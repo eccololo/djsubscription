@@ -8,9 +8,10 @@
         <h3>{{ article.title }}</h3>
         <br />
         {{ article.content }}
-        <br /><br /><br />
+        <br /><br />
         {{ article.date_posted }}
-        <br />
+        <br /><br />
+        <a class="btn btn-warning btn-sm" href="{% url 'update-article' article.id %}">Update article</a>
     </div>
     <br />
     {% endfor %}
