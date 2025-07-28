@@ -1,0 +1,17 @@
+{% extends 'writer/navbar.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br />
+    {% for article in AllArticles %}
+    <div class="container bg-white shadow-md p-5 form-layout">
+        <h3>{{ article.title }}</h3>
+        <br />
+        {{ article.content }}
+        <br /><br /><br />
+        {{ article.date_posted }}
+        <br />
+    </div>
+    <br />
+    {% endfor %}
+{% endblock %}
