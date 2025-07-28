@@ -12,6 +12,8 @@
         {{ article.date_posted }}
         <br /><br />
         <a class="btn btn-warning btn-sm" href="{% url 'update-article' article.id %}">Update article</a>
+        &nbsp;
+        <a class="btn btn-danger btn-sm" href="{% url 'delete-article' article.id %}">Delete article</a>
     </div>
     <br />
     {% endfor %}
