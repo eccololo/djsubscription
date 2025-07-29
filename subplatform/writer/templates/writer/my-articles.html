@@ -11,6 +11,12 @@
         <br /><br />
         {{ article.date_posted }}
         <br /><br />
+        {% if article.is_premium == True %}
+            ⭐<strong>Premium</strong>
+        {% else %}
+            <strong>Standard</strong>
+        {% endif %}
+        <hr />
         <a class="btn btn-warning btn-sm" href="{% url 'update-article' article.id %}">Update article</a>
         &nbsp;
         <a class="btn btn-danger btn-sm" href="{% url 'delete-article' article.id %}">Delete article</a>
