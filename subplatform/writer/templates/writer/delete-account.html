@@ -1,16 +1,16 @@
 {% extends 'writer/navbar.html' %}
-{% load crispy_forms_tags %}
 
 {% block content %}
     <br />
     <div class="container bg-white shadow-md p-5 form-layout">
-        <h3>Create an article</h3>
-        <p>You may create article below:</p>
+        <h3>Delete account</h3>
+        <p>You can delete your account below:</p>
         <br />
         <form method="POST" autocomplete="off">
             {% csrf_token %}
-            {{ CreateArticleForm |crispy }}
-            <input type="submit" class="btn btn-success btn-sm" value="Create article">
+            <input type="submit" class="btn btn-danger" value="Delete account">
         </form>
+        <br />
+        <a class='btn' href="{% url 'writer-dashboard' %}"><< Return to dashboard</a>
     </div>
 {% endblock %}

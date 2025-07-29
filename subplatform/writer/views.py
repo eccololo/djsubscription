@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 from .forms import ArticleForm, UpdateUserForm
 from .models import Article
+from account.models import CustomUser
 
 
 @login_required(login_url="my-login")
@@ -120,3 +121,17 @@ def account_management(request):
     }
 
     return render(request, "writer/account-management.html", context)
+
+
+@login_required(login_url="my-login")
+def delete_account(request):
+
+    if request.method == "POST":
+
+        delete_user = CustomUser.objects.get(email=request.user)
+
+        delete_user.delete()
+
+        return redirect("my-login")
+    
+    return render(request, "writer/delete-account.html")
