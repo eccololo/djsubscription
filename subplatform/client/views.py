@@ -24,7 +24,7 @@ def browse_articles(request):
     
     except:
 
-        return redirect("client-dashboard")
+        return render(request, "client/subscription-locked.html")
     
     current_subscription_plan = subDetail.subscription_plan
 
@@ -42,3 +42,8 @@ def browse_articles(request):
 
     return render(request, "client/browse-articles.html", context)
 
+
+@login_required(login_url="my-login")
+def subscription_locked(request):
+
+    return render(request, "client/subscription-locked.html")
