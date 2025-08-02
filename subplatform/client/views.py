@@ -65,3 +65,10 @@ def browse_articles(request):
 def subscription_locked(request):
 
     return render(request, "client/subscription-locked.html")
+
+
+
+@login_required(login_url="my-login")
+def subscription_plans(request):
+
+    return render(request, "client/subscription-plans.html")
