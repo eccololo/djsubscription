@@ -8,11 +8,29 @@ from .models import Subscription
 @login_required(login_url="my-login")
 def client_dashboard(request):
 
-    context = {
+    try:
 
-    }
+        subDetails = Subscription.objects.get(user=request.user)
 
-    return render(request, "client/client-dashboard.html")
+        subscription_plan = subDetails.subscription_plan
+
+        context = {
+            "SubPlan": subscription_plan
+        }
+
+        return render(request, "client/client-dashboard.html", context)
+    
+    except:
+
+        subscription_plan = "None"
+
+        context = {
+            "SubPlan": subscription_plan
+        }
+
+        return render(request, "client/client-dashboard.html", context)
+    
+
 
 
 @login_required(login_url="my-login")
