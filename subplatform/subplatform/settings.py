@@ -1,7 +1,16 @@
 from pathlib import Path
+import os
+import environ
+
+env = environ.Env(
+    # Default value for DEBUG.
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -127,3 +136,7 @@ AUTH_USER_MODEL = 'account.CustomUser'
 # Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+# PayPal
+PAYPAL_CLIENT_ID = env("PAYPAL_CLIENT_ID")
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"

@@ -1,5 +1,6 @@
 body {
     background: #e6e3e3;
+    overflow-x: hidden;
 }
 
 .form-layout {

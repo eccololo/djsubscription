@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from writer.models import Article
 from .models import Subscription
@@ -71,4 +72,8 @@ def subscription_locked(request):
 @login_required(login_url="my-login")
 def subscription_plans(request):
 
-    return render(request, "client/subscription-plans.html")
+    context = {
+        "PayPalClientID": settings.PAYPAL_CLIENT_ID
+    }
+
+    return render(request, "client/subscription-plans.html", context)
